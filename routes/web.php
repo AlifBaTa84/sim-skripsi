@@ -6,11 +6,11 @@ use App\Http\Controllers\SpesialisasiDosenController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DashboardController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::resource('program-studi', ProgramStudiController::class);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/', function () {return view('welcome');});
+Route::resource('program_studi', ProgramStudiController::class);
 Route::resource('spesialisasi-dosen', SpesialisasiDosenController::class);
 Route::resource('dosen', DosenController::class);
 Route::resource('mahasiswa', MahasiswaController::class);

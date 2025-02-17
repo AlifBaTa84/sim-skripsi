@@ -3,62 +3,56 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ProgramStudi;
 
 class ProgramStudiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $programStudi = ProgramStudi::all();
+        return view('program_studi.index', compact('programStudi'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('program_studi.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode' => 'required|unique:program_studis,kode',
+            'nama' => 'required'
+        ]);
+
+        ProgramStudi::create($request->all());
+        return redirect()->route('program_studi.index')->with('success', 'Program Studi berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $programStudi = ProgramStudi::findOrFail($id);
+        return view('program_studi.edit', compact('programStudi'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'kode' => 'required',
+            'nama' => 'required'
+        ]);
+
+        $programStudi = ProgramStudi::findOrFail($id);
+        $programStudi->update($request->all());
+
+        return redirect()->route('program_studi.index')->with('success', 'Program Studi berhasil diperbarui.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy($id)
     {
-        //
-    }
+        $programStudi = ProgramStudi::findOrFail($id);
+        $programStudi->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('program_studi.index')->with('success', 'Program Studi berhasil dihapus.');
     }
 }
