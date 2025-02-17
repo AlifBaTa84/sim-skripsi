@@ -39,11 +39,12 @@
     <div class="sidebar">
         <h4>Manajemen Skripsi</h4>
         <a href="{{ route('dashboard') }}">Dashboard</a>
-        <a href="{{ route('program_studi.index') }}">Kelola Program Studi</a> 
-        <a href="#">Kelola Mahasiswa</a>
-        <a href="#">Kelola Dosen</a>
-        <a href="#">Kelola Spesialisasi</a>
-        <a href="#">Kelola Admin</a>
+        <a href="#">Data Tahun Akademik</a> 
+        <a href="{{ route('program_studi.index') }}">Data Program Studi</a> 
+        <a href="#">Data Mahasiswa</a>
+        <a href="#">Data Dosen</a>
+        <a href="#">Data Spesialisasi</a>
+        <a href="#">Data Admin</a>
         <hr>
         <form method="POST" action="#">
             @csrf
