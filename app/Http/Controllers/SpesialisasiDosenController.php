@@ -3,62 +3,47 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\SpesialisasiDosen;
 
-class SpesialisasiDosenController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+class SpesialisasiDosenController extends Controller {
+    public function index() {
+        $spesialisasi = SpesialisasiDosen::paginate(10);
+        return view('spesialisasi_dosen.index', compact('spesialisasi'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function create() {
+        return view('spesialisasi_dosen.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        $request->validate([
+            'kode' => 'required|unique:spesialisasi_dosens,kode',
+            'nama' => 'required'
+        ]);
+
+        SpesialisasiDosen::create($request->all());
+
+        return redirect()->route('spesialisasi_dosen.index')->with('success', 'Data berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+    public function edit(SpesialisasiDosen $spesialisasiDosen) {
+        return view('spesialisasi_dosen.edit', compact('spesialisasiDosen'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+    public function update(Request $request, SpesialisasiDosen $spesialisasiDosen) {
+        $request->validate([
+            'kode' => 'required|unique:spesialisasi_dosens,kode,' . $spesialisasiDosen->id,
+            'nama' => 'required'
+        ]);
+
+        $spesialisasiDosen->update($request->all());
+
+        return redirect()->route('spesialisasi_dosen.index')->with('success', 'Data berhasil diperbarui');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    public function destroy(SpesialisasiDosen $spesialisasiDosen) {
+        $spesialisasiDosen->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('spesialisasi_dosen.index')->with('success', 'Data berhasil dihapus');
     }
 }

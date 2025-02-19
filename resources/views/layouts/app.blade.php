@@ -41,9 +41,9 @@
         <a href="{{ route('dashboard') }}">Dashboard</a>
         <a href="{{ route('tahun_akademik.index')}}">Data Tahun Akademik</a> 
         <a href="{{ route('program_studi.index') }}">Data Program Studi</a> 
-        <a href="#">Data Mahasiswa</a>
+        <a href="{{ route('spesialisasi_dosen.index')}}">Data Spesialisasi Dosen</a>
         <a href="#">Data Dosen</a>
-        <a href="#">Data Spesialisasi Dosen</a>
+        <a href="#">Data Mahasiswa</a>
         <a href="#">Data Admin</a>
         <hr>
         <form method="POST" action="#">

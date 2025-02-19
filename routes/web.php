@@ -13,7 +13,7 @@ Route::get('/', function () {return view('welcome');});
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('tahun_akademik', TahunAkademikController::class);
 Route::resource('program_studi', ProgramStudiController::class);
-Route::resource('spesialisasi-dosen', SpesialisasiDosenController::class);
+Route::resource('spesialisasi_dosen', SpesialisasiDosenController::class);
 Route::resource('dosen', DosenController::class);
 Route::resource('mahasiswa', MahasiswaController::class);
 Route::resource('admin', AdminController::class);
