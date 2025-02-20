@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h3>Edit Tahun Akademik</h3>
+    <h3>Edit Data Tahun Akademik</h3>
     <form action="{{ route('tahun_akademik.update', $tahunAkademik->id) }}" method="POST">
         @csrf
         @method('PUT')

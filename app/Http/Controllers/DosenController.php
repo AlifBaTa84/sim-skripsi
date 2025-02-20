@@ -2,63 +2,64 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
+use App\Models\ProgramStudi;
+use App\Models\SpesialisasiDosen;
 use Illuminate\Http\Request;
 
 class DosenController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $dosens = Dosen::with(['programStudi', 'spesialisasi'])->paginate(10);
+        return view('dosen.index', compact('dosens'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $programStudis = ProgramStudi::all();
+        $spesialisasis = SpesialisasiDosen::all();
+        return view('dosen.create', compact('programStudis', 'spesialisasis'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nip' => 'required|unique:dosens,nip',
+            'nama' => 'required',
+            'email' => 'required|email|unique:dosens,email',
+            'program_studi_id' => 'required|exists:program_studis,id',
+            'spesialisasi_id' => 'required|exists:spesialisasi_dosens,id',
+        ]);
+
+        Dosen::create($request->all());
+        return redirect()->route('dosen.index')->with('success', 'Dosen berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit(Dosen $dosen)
     {
-        //
+        $programStudis = ProgramStudi::all();
+        $spesialisasis = SpesialisasiDosen::all();
+        return view('dosen.edit', compact('dosen', 'programStudis', 'spesialisasis'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, Dosen $dosen)
     {
-        //
+        $request->validate([
+            'nip' => 'required|unique:dosens,nip,' . $dosen->id,
+            'nama' => 'required',
+            'email' => 'required|email|unique:dosens,email,' . $dosen->id,
+            'program_studi_id' => 'required|exists:program_studis,id',
+            'spesialisasi_id' => 'required|exists:spesialisasi_dosens,id',
+        ]);
+
+        $dosen->update($request->all());
+        return redirect()->route('dosen.index')->with('success', 'Dosen berhasil diperbarui');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(Dosen $dosen)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $dosen->delete();
+        return redirect()->route('dosen.index')->with('success', 'Dosen berhasil dihapus');
     }
 }

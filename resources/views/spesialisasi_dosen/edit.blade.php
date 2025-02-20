@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2>Edit Spesialisasi Dosen</h2>
+    <h2>Edit Data Spesialisasi Dosen</h2>
     <form action="{{ route('spesialisasi_dosen.update', $spesialisasiDosen->id) }}" method="POST">
         @csrf @method('PUT')
         <div class="form-group">
