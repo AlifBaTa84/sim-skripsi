@@ -23,7 +23,7 @@ class SpesialisasiDosenController extends Controller {
 
         SpesialisasiDosen::create($request->all());
 
-        return redirect()->route('spesialisasi_dosen.index')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('spesialisasi_dosen.index')->with('success', 'Data spesialisasi dosen berhasil ditambahkan');
     }
 
     public function edit(SpesialisasiDosen $spesialisasiDosen) {
@@ -38,12 +38,12 @@ class SpesialisasiDosenController extends Controller {
 
         $spesialisasiDosen->update($request->all());
 
-        return redirect()->route('spesialisasi_dosen.index')->with('success', 'Data berhasil diperbarui');
+        return redirect()->route('spesialisasi_dosen.index')->with('success', 'Data spesialisasi dosen berhasil diperbarui');
     }
 
     public function destroy(SpesialisasiDosen $spesialisasiDosen) {
         $spesialisasiDosen->delete();
 
-        return redirect()->route('spesialisasi_dosen.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('spesialisasi_dosen.index')->with('success', 'Data spesialisasi dosen berhasil dihapus');
     }
 }

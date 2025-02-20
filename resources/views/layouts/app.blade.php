@@ -43,7 +43,7 @@
         <a href="{{ route('program_studi.index') }}">Data Program Studi</a> 
         <a href="{{ route('spesialisasi_dosen.index')}}">Data Spesialisasi Dosen</a>
         <a href="{{ route('dosen.index')}}">Data Dosen</a>
-        <a href="#">Data Mahasiswa</a>
+        <a href="{{ route('mahasiswa.index')}}">Data Mahasiswa</a>
         <a href="#">Data Admin</a>
         <hr>
         <form method="POST" action="#">

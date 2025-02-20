@@ -33,7 +33,7 @@ class DosenController extends Controller
         ]);
 
         Dosen::create($request->all());
-        return redirect()->route('dosen.index')->with('success', 'Dosen berhasil ditambahkan');
+        return redirect()->route('dosen.index')->with('success', 'Data dosen berhasil ditambahkan');
     }
 
     public function edit(Dosen $dosen)
@@ -54,12 +54,12 @@ class DosenController extends Controller
         ]);
 
         $dosen->update($request->all());
-        return redirect()->route('dosen.index')->with('success', 'Dosen berhasil diperbarui');
+        return redirect()->route('dosen.index')->with('success', 'Data dosen berhasil diperbarui');
     }
 
     public function destroy(Dosen $dosen)
     {
         $dosen->delete();
-        return redirect()->route('dosen.index')->with('success', 'Dosen berhasil dihapus');
+        return redirect()->route('dosen.index')->with('success', 'Data dosen berhasil dihapus');
     }
 }

@@ -26,7 +26,7 @@ class ProgramStudiController extends Controller
         ]);
 
         ProgramStudi::create($request->all());
-        return redirect()->route('program_studi.index')->with('success', 'Program Studi berhasil ditambahkan.');
+        return redirect()->route('program_studi.index')->with('success', 'Data program studi berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -45,7 +45,7 @@ class ProgramStudiController extends Controller
         $programStudi = ProgramStudi::findOrFail($id);
         $programStudi->update($request->all());
 
-        return redirect()->route('program_studi.index')->with('success', 'Program Studi berhasil diperbarui.');
+        return redirect()->route('program_studi.index')->with('success', 'Data program studi berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -53,6 +53,6 @@ class ProgramStudiController extends Controller
         $programStudi = ProgramStudi::findOrFail($id);
         $programStudi->delete();
 
-        return redirect()->route('program_studi.index')->with('success', 'Program Studi berhasil dihapus.');
+        return redirect()->route('program_studi.index')->with('success', 'Data program Studi berhasil dihapus.');
     }
 }
