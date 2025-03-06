@@ -13,14 +13,14 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.index', compact('users'));
+        return view('admin/users.index', compact('users'));
     }
 
     public function create()
     {
         $dosen = Dosen::select('nip', 'nama')->get(); // Ambil NIP & Nama Dosen
         $mahasiswa = Mahasiswa::select('nim', 'nama')->get(); // Ambil NIM & Nama Mahasiswa
-        return view('users.create', compact('dosen', 'mahasiswa'));
+        return view('admin/users.create', compact('dosen', 'mahasiswa'));
     }
 
     public function store(Request $request)
@@ -41,13 +41,13 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
     
-        return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan');
+        return redirect()->route('admin/user.index')->with('success', 'User berhasil ditambahkan');
     }
 
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('users.edit', compact('user'));
+        return view('admin/users.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)
@@ -68,12 +68,12 @@ class UserController extends Controller
             'nim' => $request->role === 'mahasiswa' ? $request->nim : null,
         ]);
 
-        return redirect()->route('user.index')->with('success', 'User berhasil diperbarui.');
+        return redirect()->route('admin/user.index')->with('success', 'User berhasil diperbarui.');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('user.index')->with('success', 'User berhasil dihapus.');
+        return redirect()->route('admin/user.index')->with('success', 'User berhasil dihapus.');
     }
 }

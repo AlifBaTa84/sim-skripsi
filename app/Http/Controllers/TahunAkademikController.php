@@ -8,11 +8,11 @@ use App\Models\TahunAkademik;
 class TahunAkademikController extends Controller {
     public function index() {
         $data = TahunAkademik::paginate(10);
-        return view('tahun_akademik.index', compact('data'));
+        return view('admin/tahun_akademik.index', compact('data'));
     }
 
     public function create() {
-        return view('tahun_akademik.create');
+        return view('admin/tahun_akademik.create');
     }
 
     public function store(Request $request) {
@@ -31,11 +31,11 @@ class TahunAkademikController extends Controller {
             'semester' => $request->semester,
         ]);
 
-        return redirect()->route('tahun_akademik.index')->with('success', 'Tahun Akademik berhasil ditambahkan.');
+        return redirect()->route('admin/tahun_akademik.index')->with('success', 'Tahun Akademik berhasil ditambahkan.');
     }
 
     public function edit(TahunAkademik $tahunAkademik) {
-        return view('tahun_akademik.edit', compact('tahunAkademik'));
+        return view('admin/tahun_akademik.edit', compact('tahunAkademik'));
     }
 
     public function update(Request $request, TahunAkademik $tahunAkademik) {
@@ -49,11 +49,11 @@ class TahunAkademikController extends Controller {
             'semester' => $request->semester,
         ]);
 
-        return redirect()->route('tahun_akademik.index')->with('success', 'Tahun Akademik berhasil diperbarui.');
+        return redirect()->route('admin/tahun_akademik.index')->with('success', 'Tahun Akademik berhasil diperbarui.');
     }
 
     public function destroy(TahunAkademik $tahunAkademik) {
         $tahunAkademik->delete();
-        return redirect()->route('tahun_akademik.index')->with('success', 'Tahun Akademik berhasil dihapus.');
+        return redirect()->route('admin/tahun_akademik.index')->with('success', 'Tahun Akademik berhasil dihapus.');
     }
 }

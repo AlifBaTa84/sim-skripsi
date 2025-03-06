@@ -8,11 +8,11 @@ use App\Models\SpesialisasiDosen;
 class SpesialisasiDosenController extends Controller {
     public function index() {
         $spesialisasi = SpesialisasiDosen::paginate(10);
-        return view('spesialisasi_dosen.index', compact('spesialisasi'));
+        return view('admin/spesialisasi_dosen.index', compact('spesialisasi'));
     }
 
     public function create() {
-        return view('spesialisasi_dosen.create');
+        return view('admin/spesialisasi_dosen.create');
     }
 
     public function store(Request $request) {
@@ -23,11 +23,11 @@ class SpesialisasiDosenController extends Controller {
 
         SpesialisasiDosen::create($request->all());
 
-        return redirect()->route('spesialisasi_dosen.index')->with('success', 'Data spesialisasi dosen berhasil ditambahkan');
+        return redirect()->route('admin/spesialisasi_dosen.index')->with('success', 'Data spesialisasi dosen berhasil ditambahkan');
     }
 
     public function edit(SpesialisasiDosen $spesialisasiDosen) {
-        return view('spesialisasi_dosen.edit', compact('spesialisasiDosen'));
+        return view('admin/spesialisasi_dosen.edit', compact('spesialisasiDosen'));
     }
 
     public function update(Request $request, SpesialisasiDosen $spesialisasiDosen) {
@@ -38,12 +38,12 @@ class SpesialisasiDosenController extends Controller {
 
         $spesialisasiDosen->update($request->all());
 
-        return redirect()->route('spesialisasi_dosen.index')->with('success', 'Data spesialisasi dosen berhasil diperbarui');
+        return redirect()->route('admin/spesialisasi_dosen.index')->with('success', 'Data spesialisasi dosen berhasil diperbarui');
     }
 
     public function destroy(SpesialisasiDosen $spesialisasiDosen) {
         $spesialisasiDosen->delete();
 
-        return redirect()->route('spesialisasi_dosen.index')->with('success', 'Data spesialisasi dosen berhasil dihapus');
+        return redirect()->route('admin/spesialisasi_dosen.index')->with('success', 'Data spesialisasi dosen berhasil dihapus');
     }
 }

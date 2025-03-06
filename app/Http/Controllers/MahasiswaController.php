@@ -11,13 +11,13 @@ class MahasiswaController extends Controller
     public function index()
     {
         $mahasiswas = Mahasiswa::with('programStudi')->paginate(10);
-        return view('mahasiswa.index', compact('mahasiswas'));
+        return view('admin/mahasiswa.index', compact('mahasiswas'));
     }
 
     public function create()
     {
         $programStudis = ProgramStudi::all();
-        return view('mahasiswa.create', compact('programStudis'));
+        return view('admin/mahasiswa.create', compact('programStudis'));
     }
 
     public function store(Request $request)
@@ -31,13 +31,13 @@ class MahasiswaController extends Controller
 
         Mahasiswa::create($request->all());
 
-        return redirect()->route('mahasiswa.index')->with('success', 'Data mahasiswa berhasil ditambahkan');
+        return redirect()->route('admin/mahasiswa.index')->with('success', 'Data mahasiswa berhasil ditambahkan');
     }
 
     public function edit(Mahasiswa $mahasiswa)
     {
         $programStudis = ProgramStudi::all();
-        return view('mahasiswa.edit', compact('mahasiswa', 'programStudis'));
+        return view('admin/mahasiswa.edit', compact('mahasiswa', 'programStudis'));
     }
 
     public function update(Request $request, Mahasiswa $mahasiswa)
@@ -51,12 +51,12 @@ class MahasiswaController extends Controller
 
         $mahasiswa->update($request->all());
 
-        return redirect()->route('mahasiswa.index')->with('success', 'Data mahasiswa berhasil diperbarui');
+        return redirect()->route('admin/mahasiswa.index')->with('success', 'Data mahasiswa berhasil diperbarui');
     }
 
     public function destroy(Mahasiswa $mahasiswa)
     {
         $mahasiswa->delete();
-        return redirect()->route('mahasiswa.index')->with('success', 'Data mahasiswa berhasil dihapus');
+        return redirect()->route('admin/mahasiswa.index')->with('success', 'Data mahasiswa berhasil dihapus');
     }
 }
