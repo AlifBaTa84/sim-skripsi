@@ -44,7 +44,7 @@
         <a href="{{ route('spesialisasi_dosen.index')}}">Data Spesialisasi Dosen</a>
         <a href="{{ route('dosen.index')}}">Data Dosen</a>
         <a href="{{ route('mahasiswa.index')}}">Data Mahasiswa</a>
-        <a href="#">Data Admin</a>
+        <a href="{{ route('user.index')}}">Data User</a>
         <hr>
         <form method="POST" action="#">
             @csrf
